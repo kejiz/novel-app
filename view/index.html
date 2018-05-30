@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>柯基小说</title>
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <link href="/css/common.css" rel="stylesheet">
+    <style>
+        .search-form {
+            margin: auto;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 577px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            border: 1px solid #bf2c24;
+            height: 40px;
+            width: calc(100% - 42px);
+        }
+
+        .search-input input {
+            height: 40px;
+            width: 100%;
+        }
+
+        .search-submit {
+            width: 40px;
+            height: 42px;
+            background: #bf2c24;
+            color: #fff;
+            text-align: center;
+        }
+
+        .search-icon {
+            font-size: 19px;
+            margin-top: 9px;
+            display: block;
+            font-weight: bold;
+        }
+
+        @media screen  and (max-width: 500px) {
+            .search-form {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="search-form">
+    <label class="search-input fl">
+        <input id="search" placeholder="鬼吹灯"/>
+    </label>
+    <label class="search-submit fl" onclick="search()">
+        <i class="search-icon iconfont icon-sousuo"></i>
+    </label>
+</div>
+
+
+<script>
+    function search() {
+        location.href = "?q=" + document.getElementById('search').value;
+    }
+    document.onkeydown = function(e){
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            search();
+        }
+    }
+</script>
+</body>
+</html>

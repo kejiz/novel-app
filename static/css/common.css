@@ -1,0 +1,20 @@
+html{
+    font-size: 14px;
+}
+body{
+    height: 100vh;
+}
+*{
+    margin: 0;
+}
+input{
+    border: none;
+    outline:none;
+    background: none;
+}
+.fl{
+    float: left;
+}
+.ib{
+    display: inline-block;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>搜索结果</title>
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <link href="/css/common.css" rel="stylesheet">
+    <style>
+        .item {
+            padding: 20px 0;
+            margin: 0 10px;
+            border-bottom: 1px solid #999;
+        }
+
+        .item-right{
+            width: 64%;
+            margin-left: 20px;
+        }
+        .item img {
+            width: 30%;
+        }
+
+        .title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            font-size: 20px;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+        .brief{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            text-indent: 28px;
+            padding-top: 10px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+<div class="fl">
+    <% for ( var i in data ) { %>
+    <div class="item fl" onclick="goChapter(<%= data[i].id %>)">
+        <img class="fl" src="/img/default.png" alt="">
+        <div class="fl item-right">
+            <p class="title"><%= data[i].name %></p>
+            <p class="brief">暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述</p>
+        </div>
+
+    </div>
+    <% } %>
+</div>
+
+<script>
+    function goChapter(id) {
+        location.href = '?id=' + id.toString().replace(/\//g, '');
+    }
+</script>
+</body>
+</html>

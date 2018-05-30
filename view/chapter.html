@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title><%= data.title %></title>
+</head>
+<body style="font-family: 'Segoe UI'">
+<h3><%= data.title %></h3>
+<div id="content" style="color: green"><%- data.content %></div>
+<script src="/js/touch.js"></script>
+<script>
+    const prevPage = <%- JSON.stringify(data.prev) %>;
+    const nextPage = <%- JSON.stringify(data.next) %>;
+    addFn('left', function () {
+        location.href = nextPage
+    });
+    addFn('right', function () {
+        location.href = prevPage
+    });
+</script>
+</body>
+</html>
