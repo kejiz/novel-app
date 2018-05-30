@@ -49,5 +49,5 @@ app.use(serve(__dirname + "/static/"));
 app.use(index);
 //             *********************           //
 
-app.listen(5050);
-console.log("server start at 5050".red);
+app.listen(80);
+console.log("server start at 80ddd".red);

@@ -13,10 +13,11 @@
             border-bottom: 1px solid #999;
         }
 
-        .item-right{
+        .item-right {
             width: 64%;
             margin-left: 20px;
         }
+
         .item img {
             width: 30%;
         }
@@ -28,7 +29,8 @@
             -webkit-line-clamp: 1;
             overflow: hidden;
         }
-        .brief{
+
+        .brief {
             overflow: hidden;
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -37,10 +39,18 @@
             padding-top: 10px;
             height: 80px;
         }
+
+        @media screen  and (max-width: 500px) {
+            .search-form {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
+<%- include('search-input'); %>
 <div class="fl">
+    <% if(data!='not found'){ %>
     <% for ( var i in data ) { %>
     <div class="item fl" onclick="goChapter(<%= data[i].id %>)">
         <img class="fl" src="/img/default.png" alt="">
@@ -48,7 +58,10 @@
             <p class="title"><%= data[i].name %></p>
             <p class="brief">暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述暂无描述</p>
         </div>
-
+    </div>
+    <% }}else{ %>
+    <div>
+        <p>无结果</p>
     </div>
     <% } %>
 </div>

@@ -6,7 +6,7 @@
     <title><%= data.title %></title>
 </head>
 <body style="font-family: 'Segoe UI'">
-<h3><%= data.title %></h3>
+<h3 style="text-align: center"><%= data.title %></h3>
 <div id="content" style="color: green"><%- data.content %></div>
 <script src="/js/touch.js"></script>
 <script>
@@ -18,6 +18,9 @@
     addFn('right', function () {
         location.href = prevPage
     });
+    function goDirectory() {
+        
+    }
 </script>
 </body>
 </html>

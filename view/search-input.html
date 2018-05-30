@@ -1,0 +1,58 @@
+<style>
+    .search-form {
+        width: 577px;
+        overflow: hidden;
+    }
+
+    .search-input {
+        border: 1px solid #bf2c24;
+        height: 40px;
+        width: calc(100% - 42px);
+    }
+
+    .search-input input {
+        height: 40px;
+        width: 100%;
+    }
+
+    .search-submit {
+        width: 40px;
+        height: 42px;
+        background: #bf2c24;
+        color: #fff;
+        text-align: center;
+    }
+
+    .search-icon {
+        font-size: 19px;
+        margin-top: 9px;
+        display: block;
+        font-weight: bold;
+    }
+
+    @media screen  and (max-width: 500px) {
+        .search-form {
+            width: 90%;
+        }
+    }
+
+</style>
+<div class="search-form">
+    <label class="search-input fl">
+        <input id="search" placeholder=""/>
+    </label>
+    <label class="search-submit fl" onclick="search()">
+        <i class="search-icon iconfont icon-sousuo"></i>
+    </label>
+</div>
+<script>
+    function search() {
+        location.href = "?q=" + document.getElementById('search').value;
+    }
+    document.onkeydown = function(e){
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            search();
+        }
+    }
+</script>

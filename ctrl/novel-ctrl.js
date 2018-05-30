@@ -9,16 +9,19 @@ const novel_ips = require('../lib/config').novel_ips;
 
 module.exports = {
     async directory(ctx){
-        if (!ctx.query.id) return ctx.body = 'not found';
+        if (!ctx.query.id) return ctx.body = '404';
         let directory = await getDirectory(ctx.query.id);
+        if (directory.length < 1) return ctx.body = '404';
         return ctx.body = {
             id: ctx.query.id,
             directory
         };
     },
     async search(ctx){
-        if (!ctx.query.q) return ctx.body = 'not found';
-        return ctx.body = await query(ctx.query.q);
+        if (!ctx.query.q) return ctx.body = '404';
+        let result = await query(ctx.query.q);
+        if (result.length < 1) return ctx.body = 'not found';
+        return ctx.body = result;
     },
     async chapter(ctx){
         return ctx.body = await getChapter(ctx);
