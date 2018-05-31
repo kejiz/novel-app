@@ -13,8 +13,8 @@ const path = require('path');
 const index = require('./lib/index');
 const view = require('koa-ejs');
 const serve = require("koa-static");
+const favicon =require("koa-favicon");
 //***********//
-
 
 app.use(async (ctx, next) => {
     if (ctx.querystring) {
@@ -39,15 +39,13 @@ view(app, {
     viewExt: 'html',
     cache: false,
     debug: false,
-    escape:function (str) {
-        console.log(str);
-    }
 });
 
 app.use(serve(__dirname + "/static/"));
-
+app.use(favicon(__dirname + '/static/img/favicon.ico'));
 app.use(index);
+
 //             *********************           //
 
 app.listen(80);
-console.log("server start at 80ddd".red);
+console.log("server start at 80".green);

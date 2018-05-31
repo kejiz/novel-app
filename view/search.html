@@ -52,7 +52,7 @@
 <div class="fl">
     <% if(data!='not found'){ %>
     <% for ( var i in data ) { %>
-    <div class="item fl" onclick="goChapter(<%= data[i].id %>)">
+    <div class="item fl" onclick="goDirectory(<%= data[i].id %>)">
         <img class="fl" src="/img/default.png" alt="">
         <div class="fl item-right">
             <p class="title"><%= data[i].name %></p>
@@ -67,7 +67,7 @@
 </div>
 
 <script>
-    function goChapter(id) {
+    function goDirectory(id) {
         location.href = '?id=' + id.toString().replace(/\//g, '');
     }
 </script>

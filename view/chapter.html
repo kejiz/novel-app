@@ -4,22 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title><%= data.title %></title>
+
 </head>
 <body style="font-family: 'Segoe UI'">
 <h3 style="text-align: center"><%= data.title %></h3>
 <div id="content" style="color: green"><%- data.content %></div>
+<p id="test" onclick="goDirectory();">我最长</p>
 <script src="/js/touch.js"></script>
 <script>
-    const prevPage = <%- JSON.stringify(data.prev) %>;
-    const nextPage = <%- JSON.stringify(data.next) %>;
-    addFn('left', function () {
-        location.href = nextPage
+    const data = <%- JSON.stringify(data) %>;
+    addFn('content','left', function () {
+        location.href = data.next;
     });
-    addFn('right', function () {
-        location.href = prevPage
-    });
+    addFn('content','right', function () {
+        location.href = data.prev;
+    },true);
+
+    my_tap(document.getElementById('test'),goDirectory)
     function goDirectory() {
-        
+        location.href = '/?id=' + data.directory.toString().replace(/\//g, '');
+    }
+
+    function my_tap(dom,callBack){
+//第一不能超过延时时间，第二不能使移动
+//获取一些必要的值开始时间，延时时间，是否是移动
+        var startTime=0;
+        var delayTime=200;
+        var isMove=false;
+        dom.addEventListener("touchstart",function(event){
+            //记录开始时间
+            startTime=Date.now();
+        });
+        dom.addEventListener("touchmove",function(event){
+            //如果发生了移动就改变isMove的值
+            isMove=true;
+        });
+        dom.addEventListener("touchend",function(event){
+            //如果发生了移动就不执行回调
+            if(isMove) return;
+            //如果大于延时时间就不执行回调函数
+            if(Date.now()-startTime>delayTime) return;
+            callBack(event);
+
+        });
+
+
     }
 </script>
 </body>

@@ -68,18 +68,34 @@ async function getDirectory(url) {
 function findDirectory(html) {
     let $ = cheerio.load(html);
     let list = $('.listmain ').find('dl')[0].children;
+    let newsArr = [];
     let arr = [];
+    let flag = true;
     list.forEach((item) => {
         let _this = $(item);
         let a = _this.find('a');
+        if (_this[0].name == 'dt') {
+            flag = !flag
+        }
         if (a.attr('href') !== '' && a.text() !== '') {
-            arr.push({
-                id: a.attr('href'),
-                name: a.text()
-            });
+            if (flag) {
+                arr.push({
+                    id: a.attr('href'),
+                    name: a.text()
+                });
+            } else {
+                newsArr.push({
+                    id: a.attr('href'),
+                    name: a.text()
+                });
+            }
+
         }
     });
-    return arr;
+    return {
+        newsArr,
+        arr
+    };
 }
 
 async function getChapter(ctx) {
@@ -109,6 +125,7 @@ function findChapter(html) {
         title: $('h1').text(),
         content: $('#content').html(),
         prev: menu.eq(0).children().attr('href'),
-        next: menu.eq(2).children().attr('href')
+        next: menu.eq(2).children().attr('href'),
+        directory: menu.eq(1).children().attr('href')
     };
 }

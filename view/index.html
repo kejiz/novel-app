@@ -23,6 +23,20 @@
 <body>
 
 <%- include('search-input'); %>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $.ajax({
+        url: '/user/logi1n',
+        method: 'post',
+        data:{
+          a:'1'
+        },
+        success:function(res){
+            $('#content').text(JSON.stringify(res))
+            console.log(res);
+        }
+    });
 
+</script>
 </body>
 </html>
