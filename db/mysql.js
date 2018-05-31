@@ -3,9 +3,9 @@
  */
 const mysql = require('mysql');
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: '118.24.16.174',
     user: 'zk-admin',
-    password: 'zk@970212',
+    password: 'zk970212',
     database: 'novel-app'
 });
 console.log('数据库连接成功!'.green);
@@ -19,6 +19,7 @@ let query = function (sql, values) {
                     if (err) {
                         reject(err)
                     } else {
+                        console.log('sql执行成功');
                         resolve(results)
                     }
                     connection.release()
