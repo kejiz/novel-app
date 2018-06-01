@@ -10,7 +10,7 @@ const path = require('path');
 const koa = require('koa');
 const index = require('./lib/index-page');    //--
 const router = require('./router/routes');
-const sessions =require('./middleware/session');
+const sessions = require('./middleware/session');
 const view = require('koa-ejs');       //--
 const serve = require("koa-static");    //--
 const favicon = require("koa-favicon"); //--
@@ -49,12 +49,17 @@ app.use(favicon(__dirname + '/static/img/favicon.ico'));
 app.use(index);
 
 //             *********************           //
-var options = {
+const options = {
     key: fs.readFileSync('./keys/cnmkeji.com.key'),
     cert: fs.readFileSync('./keys/cnmkeji.com.cer'),
     ca: [fs.readFileSync('./keys/cnmkeji.com_ca.crt')],
 };
 
-app.listen(8080);
-https.createServer(options, app.callback()).listen(443);
+if (process.env.NODE_ENV == 'pro') {
+    console.log('线上环境');
+    https.createServer(options, app.callback()).listen(443);
+} else {
+    console.log('开发环境');
+    app.listen(8080);
+}
 console.log("server start at 8080".green);
