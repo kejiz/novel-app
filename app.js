@@ -62,4 +62,4 @@ if (process.env.NODE_ENV == 'pro') {
     console.log('开发环境');
     app.listen(8080);
 }
-console.log("server start at 8080".green);
+console.log("server start".green);
