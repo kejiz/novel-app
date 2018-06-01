@@ -2,12 +2,7 @@
  * Created by Kzhang on 2018/5/31.
  */
 const mysql = require('mysql');
-const pool = mysql.createPool({
-    host: '118.24.16.174',
-    user: 'zk-admin',
-    password: 'zk970212',
-    database: 'novel-app'
-});
+const pool = mysql.createPool(require('../lib/config').db_info);
 console.log('数据库连接成功!'.green);
 let query = function (sql, values) {
     return new Promise((resolve, reject) => {

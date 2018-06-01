@@ -4,19 +4,20 @@
 const colors = require('colors');
 const https = require('https');
 const fs = require('fs');
-const koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const router = require('./router/routes');
 const querystring = require('querystring');
-const app = new koa();
-
 const path = require('path');
-//view package
-const index = require('./lib/index');
-const view = require('koa-ejs');
-const serve = require("koa-static");
-const favicon = require("koa-favicon");
-//***********//
+
+const koa = require('koa');
+const index = require('./lib/index-page');    //--
+const router = require('./router/routes');
+const sessions =require('./middleware/session');
+const view = require('koa-ejs');       //--
+const serve = require("koa-static");    //--
+const favicon = require("koa-favicon"); //--
+const bodyParser = require('koa-bodyparser');
+
+const app = new koa();
+app.use(sessions);
 
 app.use(async (ctx, next) => {
     if (ctx.querystring) {
@@ -54,6 +55,6 @@ var options = {
     ca: [fs.readFileSync('./keys/cnmkeji.com_ca.crt')],
 };
 
-app.listen(80);
+app.listen(8080);
 https.createServer(options, app.callback()).listen(443);
-console.log("server start at 80".green);
+console.log("server start at 8080".green);

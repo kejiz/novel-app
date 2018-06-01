@@ -26,17 +26,19 @@
 <%- include('search-input'); %>
 <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-//    $.ajax({
-//        url: '/user/register',
-//        method: 'post',
-//        data:{
-//          a:'1'
-//        },
-//        success:function(res){
-//            $('#content').text(JSON.stringify(res))
-//            console.log(res);
-//        }
-//    });
+    $.ajax({
+        url: '/user/register',
+        method: 'post',
+        headers:{
+            'content-type':'application/json'
+        },
+
+        data:JSON.stringify({name:'测试昵称',account:'zk-admin',password:'123456'}),
+        success:function(res){
+            $('#content').text(JSON.stringify(res))
+            console.log(res);
+        }
+    });
 
 </script>
 </body>
