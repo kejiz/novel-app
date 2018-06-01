@@ -17,8 +17,8 @@
     "request": "^2.87.0"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev&& node app.js ",
-    "pro": "NODE_ENV=pro&& node app.js "
+    "dev": "set NODE_ENV=dev&& node app.js ",
+    "pro": "export NODE_ENV=pro&& node app.js "
   },
   "dependencies": {
     "koa-mysql-session": "0.0.2",
