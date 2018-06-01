@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start-dev": "NODE_ENV=dev&& node app.js ",
-    "start-pro": "NODE_ENV=pro&& node app.js "
+    "start": "NODE_ENV=pro&& node app.js "
   },
   "dependencies": {
     "koa-mysql-session": "0.0.2",
