@@ -8,6 +8,7 @@
     <link href="/css/common.css" rel="stylesheet">
     <style>
         .item {
+            width: 100%;
             padding: 20px 0;
             margin: 0 10px;
             border-bottom: 1px solid #999;
@@ -51,7 +52,7 @@
 </head>
 <body>
 <%- include('search-input'); %>
-<div class="fl">
+
     <% if(data!='not found'){ %>
     <% for ( var i in data ) { %>
     <div class="item fl" onclick="goDirectory(<%= data[i].id %>)">
@@ -66,7 +67,7 @@
         <p>无结果</p>
     </div>
     <% } %>
-</div>
+
 
 <script>
     function goDirectory(id) {
