@@ -8,7 +8,7 @@ const querystring = require('querystring');
 const path = require('path');
 
 const koa = require('koa');
-const index = require('./lib/index-page');    //--
+const index = require('./middleware/index-page');    //--
 const router = require('./router/routes');
 const sessions = require('./middleware/session');
 const view = require('koa-ejs');       //--
@@ -40,7 +40,7 @@ view(app, {
     root: path.join(__dirname, 'view'),
     layout: false,
     viewExt: 'html',
-    cache: true,
+    cache: false,
     debug: false,
 });
 
@@ -60,6 +60,6 @@ if (process.env.NODE_ENV == 'pro') {
     https.createServer(options, app.callback()).listen(443);
 } else {
     console.log('开发环境');
-    app.listen(8080);
+    app.listen(80);
 }
 console.log("server start".green);

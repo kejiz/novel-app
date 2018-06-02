@@ -14,7 +14,7 @@
     };
     function create(id) {
         let ele = document.body;
-        const ctrl = 100;   //控制滑动长度  触发滑动完成回调
+        const ctrl = 80;   //控制滑动长度  触发滑动完成回调
         let beginX, beginY, endX, endY, swipeLeft, swipeRight;
         ele.addEventListener('touchstart', function (event) {
             event.stopPropagation();

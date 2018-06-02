@@ -2,8 +2,11 @@
  * Created by Kzhang on 2018/5/31.
  */
 const mysql = require('mysql');
-const pool = mysql.createPool(require('../lib/config').db_info);
+const db_info = require('../lib/config').db_info;
+const pool = mysql.createPool(db_info.options);
+
 console.log('数据库连接成功!'.green);
+
 let query = function (sql, values) {
     return new Promise((resolve, reject) => {
         pool.getConnection(function (err, connection) {
@@ -14,14 +17,19 @@ let query = function (sql, values) {
                     if (err) {
                         reject(err)
                     } else {
-                        console.log('sql执行成功');
                         resolve(results)
                     }
                     connection.release()
                 })
             }
         })
+
     })
 };
+
+for (let i in db_info.tables) {
+    query("alter table " + db_info.tables[i] + " add CreateTime  TIMESTAMP  not Null  DEFAULT CURRENT_TIMESTAMP ;");
+}
+
 
 module.exports = {query};

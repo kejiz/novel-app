@@ -28,7 +28,6 @@ module.exports = {
     }
 };
 
-
 async function query(name) {
     return new Promise(function (resolve, rej) {
         request({
@@ -37,7 +36,7 @@ async function query(name) {
         }, function (err, resp, body) {
             resolve(findNovel(iconv.decode(body, 'gb2312')));
             console.log(('查找小说:' + name).green);
-        })
+        });
     })
 }
 function findNovel(html) {
@@ -111,21 +110,23 @@ async function getChapter(ctx) {
             url: novel_ips[0] + '/' + ctx.params.id + '/' + ctx.params.html,
             encoding: null
         }, function (err, resp, body) {
-            resolve(findChapter(iconv.decode(body, 'gb2312')));
+            resolve(findChapter(iconv.decode(body, 'gb2312'),ctx.params.html));
             console.log(('获取章节:').green);
         })
     })
 }
 
 
-function findChapter(html) {
+function findChapter(html,id) {
     let $ = cheerio.load(html);
     let menu = $('.page_chapter').children().children();
     return {
+        id,
         title: $('h1').text(),
         content: $('#content').html(),
         prev: menu.eq(0).children().attr('href'),
         next: menu.eq(2).children().attr('href'),
-        directory: menu.eq(1).children().attr('href')
+        directory: menu.eq(1).children().attr('href'),
+        novel_name:$('.path').children().children().eq(1).text()
     };
 }

@@ -3,7 +3,7 @@
  */
 const session = require('koa-session-minimal');
 const MysqlSession = require('koa-mysql-session');
-let store = new MysqlSession(require('../lib/config').db_info);
+let store = new MysqlSession(require('../lib/config').db_info.options);
 
 let cookie = {
     maxAge: 60000 * 60 * 24, // cookie有效时长

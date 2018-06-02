@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title><%= data.title %></title>
+    <title><%= data.novel_name+' '+data.title %></title>
 
 </head>
 <body style="font-family: 'Segoe UI'">
@@ -20,7 +20,17 @@
         location.href = data.prev;
     },true);
 
-    my_tap(document.getElementById('test'),goDirectory)
+    document.onkeydown = function(e){
+        let ev = document.all ? window.event : e;
+        if(ev.keyCode==37) {
+            location.href = data.prev;
+        }
+        if(ev.keyCode==39) {
+            location.href = data.next;
+        }
+    };
+
+    my_tap(document.getElementById('test'),goDirectory);
     function goDirectory() {
         location.href = '/?id=' + data.directory.toString().replace(/\//g, '');
     }
@@ -41,6 +51,12 @@
             callBack(event);
         });
     }
+
+
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+        axios.post('/collect/bookmark',{bookmark:`${data.novel_name+'-'+data.title}`,href:data.directory+data.id})
 </script>
 </body>
 </html>
