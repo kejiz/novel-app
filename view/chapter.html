@@ -17,9 +17,9 @@
     width: 100%;
     float: left;">
     <p class="fl"><a href="<%- data.prev %>">上一章</a></p>
+    <p class="fl" ><a onclick="goDirectory();">返回目录</a></p>
     <p class="fl" ><a href="<%- data.next %>">下一章</a></p>
 </div>
-<p id="test" onclick="goDirectory();">返回目录</p>
 <script src="/js/touch.js"></script>
 <script>
     const data = <%- JSON.stringify(data) %>;
