@@ -9,7 +9,7 @@ module.exports = {
         if (!util.paramsIsvalid(parseData.bookmark))return ctx.body = util.creatCodeObj(400, '参数错误');
         let id = ctx.session.user.id ? ctx.session.user.id : ctx.cookies.get('SESSION_ID');
         let verify = await mysql.query('SELECT * FROM bookmark where id=?', [id]);
-        if (verify.length > 0 && verify[0].href == parseData.href) {
+        if (verify.length > 0 && verify[0].bookmark == parseData.bookmark) {
             return ctx.body = util.creatCodeObj(200, '已收录');
         } else {
             mysql.query('INSERT INTO bookmark(id,bookmark,href) VALUES(?,?,?)', [id, parseData.bookmark,parseData.href]);

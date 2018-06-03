@@ -58,6 +58,7 @@ async function getDirectory(url) {
             url: novel_ips[0] + '/' + url,
             encoding: null
         }, function (err, resp, body) {
+            console.log(body);
             resolve(findDirectory(iconv.decode(body, 'gb2312')));
             console.log('获取目录'.green);
         })
