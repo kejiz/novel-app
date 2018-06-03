@@ -19,16 +19,16 @@
     <p class="fl"><a href="<%- data.prev %>">上一章</a></p>
     <p class="fl" ><a href="<%- data.next %>">下一章</a></p>
 </div>
-<p id="test" onclick="goDirectory();">我最长</p>
-<!--<script src="/js/touch.js"></script>-->
+<p id="test" onclick="goDirectory();">返回目录</p>
+<script src="/js/touch.js"></script>
 <script>
     const data = <%- JSON.stringify(data) %>;
-//    addFn('content','left', function () {
-//        location.href = data.next;
-//    });
-//    addFn('content','right', function () {
-//        location.href = data.prev;
-//    },true);
+    addFn('content','left', function () {
+        location.href = data.next;
+    });
+    addFn('content','right', function () {
+        location.href = data.prev;
+    },true);
 
     document.onkeydown = function(e){
         let ev = document.all ? window.event : e;
