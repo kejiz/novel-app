@@ -6,16 +6,20 @@
     <title><%= data.novel_name+' '+data.title %></title>
     <style>
         .fl{
-            width: 50%;float: left;text-align: center;
+            width: 33.33%;float: left;text-align: center;
+        }
+        .fl a{
+            text-decoration:none;
+            color: #333;
         }
     </style>
 </head>
-<body style="font-family: 'Segoe UI'">
+<body style="font-family: 'Segoe UI';margin: 0;">
 <h3 style="text-align: center"><%= data.title %></h3>
-<div id="content" style="color: green"><%- data.content %></div>
-<div style="    background: #e0dfdf;
+<div id="content" style="color: green;padding: 0 15px"><%- data.content %></div>
+<div style="    background: #b0e6c6;
     width: 100%;
-    float: left;">
+    float: left;margin: 20px 0 0 0">
     <p class="fl"><a href="<%- data.prev %>">上一章</a></p>
     <p class="fl" ><a onclick="goDirectory();">返回目录</a></p>
     <p class="fl" ><a href="<%- data.next %>">下一章</a></p>
