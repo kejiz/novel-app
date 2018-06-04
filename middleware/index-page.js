@@ -2,7 +2,6 @@
  * Created by Kzhang on 2018/5/28.
  */
 const novelCtrl = require('../ctrl/novel-ctrl');
-const collectCtrl = require('../ctrl/collect-ctrl');
 module.exports = async function (ctx) {
     if(!ctx.session.user){
         ctx.session.user={

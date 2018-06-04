@@ -17,12 +17,12 @@
 <body style="font-family: 'Segoe UI';margin: 0;">
 <h3 style="text-align: center"><%= data.title %></h3>
 <div id="content" style="color: green;padding: 0 15px"><%- data.content %></div>
-<div style="    background: #b0e6c6;
+<div style="background: #b0e6c6;
     width: 100%;
     float: left;margin: 20px 0 0 0">
-    <p class="fl"><a href="<%- data.prev %>">上一章</a></p>
-    <p class="fl" ><a onclick="goDirectory();">返回目录</a></p>
-    <p class="fl" ><a href="<%- data.next %>">下一章</a></p>
+    <p class="fl" id="prev"><a>上一章</a></p>
+    <p class="fl" id="test"><a>返回目录</a></p>
+    <p class="fl" id="next"><a>下一章</a></p>
 </div>
 <script src="/js/touch.js"></script>
 <script>
@@ -44,10 +44,15 @@
         }
     };
 
-    my_tap(document.getElementById('test'),goDirectory);
-    function goDirectory() {
+    my_tap(document.getElementById('test'),function () {
         location.href = '/?id=' + data.directory.toString().replace(/\//g, '');
-    }
+    });
+    my_tap(document.getElementById('prev'),function () {
+        location.href = data.prev;
+    });
+    my_tap(document.getElementById('next'),function () {
+        location.href = data.next;
+    });
 
     function my_tap(dom,callBack){
         var startTime=0;
