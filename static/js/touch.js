@@ -45,7 +45,6 @@
         ele.addEventListener('touchend', function (event) {
             event.stopPropagation();
             event.preventDefault();
-            if()
             if (Math.abs(endX - beginX) - Math.abs(endY - beginY) > 0) {
                 event.stopPropagation();
                 event.preventDefault();
