@@ -18,27 +18,19 @@ const bodyParser = require('koa-bodyparser');
 
 const app = new koa();
 app.use(sessions);
-
 app.use(async (ctx, next) => {
     if (ctx.querystring) {
         ctx.query = querystring.parse(ctx.querystring);
     }
     await next();
 });
-
 app.use(bodyParser());
-
-app.use(async (ctx, next) => {
-    await next();
-    console.log(`${ctx.method} ${ctx.url}`)
-});
-
 app.use(router.routes(), router.allowedMethods());
 
 //          *******************         view
 view(app, {
     root: path.join(__dirname, 'view'),
-    layout: false,
+    layout: 'layout',
     viewExt: 'html',
     cache: false,
     debug: false,
@@ -49,17 +41,17 @@ app.use(favicon(__dirname + '/static/img/favicon.ico'));
 app.use(index);
 
 //             *********************           //
-const options = {
-    key: fs.readFileSync('./keys/cnmkeji.com.key'),
-    cert: fs.readFileSync('./keys/cnmkeji.com.cer'),
-    ca: [fs.readFileSync('./keys/cnmkeji.com_ca.crt')],
-};
-
-if (process.env.NODE_ENV == 'pro') {
-    console.log('线上环境');
-    https.createServer(options, app.callback()).listen(443);
-} else {
-    console.log('开发环境');
+// const options = {
+//     key: fs.readFileSync('./keys/cnmkeji.com.key'),
+//     cert: fs.readFileSync('./keys/cnmkeji.com.cer'),
+//     ca: [fs.readFileSync('./keys/cnmkeji.com_ca.crt')],
+// };
+//
+// if (process.env.NODE_ENV == 'pro') {
+//     console.log('线上环境');
+//     https.createServer(options, app.callback()).listen(443);
+// } else {
+//     console.log('开发环境');
     app.listen(80);
-}
+// }
 console.log("server start".green);

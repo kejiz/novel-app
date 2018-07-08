@@ -10,7 +10,9 @@ module.exports = {
         let verify = await mysql.query('SELECT * FROM users where account=?', [parseData.account]);
         if (verify.length === 0) {
             await mysql.query('INSERT INTO users(name,account,password) VALUES(?,?,?)', [parseData.name, parseData.account, parseData.password]);
-            ctx.session.user = parseData;
+            mysql.query("select max(id) from users;").then(function (res) {
+                mysql.query(`update bookmark set id ='${res[0]['max(id)']}' where id ='${ctx.cookies.get('SESSION_ID')}'`);
+            });
             return ctx.body = util.creatCodeObj(200, '注册成功')
         } else {
             return ctx.body = util.creatCodeObj(200, '已被注册')

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>章节目录</title>
-    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
-    <link href="/css/common.css" rel="stylesheet">
+
     <style>
         @media screen  and (max-width: 500px) {
             .search-form {
@@ -13,12 +6,10 @@
             }
         }
     </style>
-</head>
-<body>
+
+
 <%- include('search-input'); %><p>最新章节</p><% for ( var i in data.directory.newsArr ) { %>
 <div content="fl"><a href="<%= data.directory.newsArr[i].id %>"><%= data.directory.newsArr[i].name %></a></div>
 <% } %><p>正文卷</p><% for ( var i in data.directory.arr ) { %>
 <div content="fl"><a href="<%= data.directory.arr[i].id %>"><%= data.directory.arr[i].name %></a></div>
 <% } %>
-</body>
-</html>

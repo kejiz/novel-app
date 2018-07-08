@@ -1,0 +1,46 @@
+<style>
+    .history-model {
+        border: solid 1px #cccccc70;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 60%;
+        transform: translateY(-50%);
+        width: 577px;
+        overflow: hidden;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    @media screen  and (max-width: 750px) {
+        .history-model {
+            width: 90%;
+        }
+    }
+</style>
+<div class="history-model">
+    <p>观看历史：</p>
+    <div class="history"></div>
+</div>
+<script>
+    function getmark() {
+        var history = document.getElementsByClassName('history')[0];
+        history.innerHTML = '';
+        axios({
+            url: '/collect/bookmark',
+            method: 'get',
+        }).then(function (res) {
+            var data = res.data.slice(0, 3);
+            let fragment = document.createDocumentFragment();
+            for (let i = 0; i < data.length; i++) {
+                let a = document.createElement('a');
+                a.setAttribute('href', data[i].href);
+                a.innerHTML = data[i].bookmark;
+                fragment.appendChild(a)
+            }
+            history.appendChild(fragment)
+        });
+    }
+    getmark();
+</script>

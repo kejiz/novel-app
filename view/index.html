@@ -1,63 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="baidu-site-verification" content="TyijHAkwOS"/>
-    <title>柯基小说网</title>
-    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
-    <link href="/css/common.css" rel="stylesheet">
-    <style>
-        .search-form {
-            margin: auto;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 577px;
-            overflow: hidden;
-        }
+<style>
+    .search-form {
+        margin: auto;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 577px;
+        overflow: hidden;
+    }
 
-        .history a {
-            display: block;
-        }
-    </style>
-</head>
-<body>
+    .footer {
+        margin: auto;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        transform: translateY(-50%);
+        width: 577px;
+        overflow: hidden;
+    }
 
-<%- include('search-input'); %>
-<div style="text-align: center;"><p>观看历史：</p><div class="history"></div></div>
+    .history a {
+        display: block;
+    }
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-    //    axios({
-    //        url: '/user/login',
-    //        method: 'post',
-    //        headers: {
-    //            'content-type': 'application/json'
-    //        },
-    //        data: JSON.stringify({name: '测试12昵称', account: 'zk-admin12', password: '123456'}),
-    //        success: function (res) {
-    //
-    //        }
-    //    });
+    .model {
+        display: none;
+    }
+</style>
+<div>
+    <%- include('search-input'); %>
+    <%- include('history'); %>
 
-    axios({
-        url: '/collect/bookmark',
-        method: 'get',
-    }).then(function (res) {
-        var data = res.data.slice(0, 3);
-        let fragment = document.createDocumentFragment();
-        for (let i = 0; i < data.length; i++) {
-            let a = document.createElement('a');
-            a.setAttribute('href', data[i].href);
-            a.innerHTML = data[i].bookmark;
-            fragment.appendChild(a)
-        }
-        document.getElementsByClassName('history')[0].appendChild(fragment)
-    });
-</script>
-</body>
-</html>
+    <div class="model">
+        <%- include('login-register'); %>
+    </div>
+    <div class="footer">
+        <div class="padding-content">
+            <div>登陆</div>
+            <div>注册</div>
+        </div>
+    </div>
+</div>

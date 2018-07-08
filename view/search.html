@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>搜索结果</title>
-    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
-    <link href="/css/common.css" rel="stylesheet">
+
     <style>
         .item {
             width: 100%;
@@ -49,8 +42,7 @@
             }
         }
     </style>
-</head>
-<body>
+
 <%- include('search-input'); %>
 
     <% if(data!='not found'){ %>
@@ -74,5 +66,3 @@
         location.href = '?id=' + id.toString().replace(/\//g, '');
     }
 </script>
-</body>
-</html>

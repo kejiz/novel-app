@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title><%= data.novel_name+' '+data.title %></title>
+
     <style>
         .fl{
             width: 33.33%;float: left;text-align: center;
@@ -12,9 +7,24 @@
             text-decoration:none;
             color: #333;
         }
+        .page-read-opt.active {
+            visibility: visible;
+            -webkit-transition: none;
+            transition: none;
+            opacity: 1;
+        }
+        .page-read-opt {
+            visibility: hidden;
+            -webkit-transition: opacity .15s,visibility .15s;
+            transition: opacity .15s,visibility .15s;
+            opacity: 0;
+        }
+        .page-read-opt {
+            z-index: 2;
+        }
     </style>
-</head>
-<body style="font-family: 'Segoe UI';margin: 0;">
+
+
 <h3 style="text-align: center"><%= data.title %></h3>
 <div id="content" style="color: green;padding: 0 15px"><%- data.content %></div>
 <div style="background: #b0e6c6;
@@ -77,5 +87,3 @@
 <script>
         axios.post('/collect/bookmark',{bookmark:`${data.novel_name+'-'+data.title}`,href:data.directory+data.id})
 </script>
-</body>
-</html>
