@@ -52,6 +52,6 @@ app.use(index);
 //     https.createServer(options, app.callback()).listen(443);
 // } else {
 //     console.log('开发环境');
-    app.listen(80);
+    app.listen(8080);
 // }
 console.log("server start".green);
