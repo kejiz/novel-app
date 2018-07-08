@@ -13,7 +13,7 @@ module.exports = async function (ctx) {
     data.html_title='柯基小说网';
     let page = 'index';
     if (ctx.query.q) {
-        data = await novelCtrl.search(ctx);
+        data.content = await novelCtrl.search(ctx);
         data.html_title='搜索结果';
         page = 'search';
     }
@@ -24,7 +24,7 @@ module.exports = async function (ctx) {
     }
     if (ctx.path.indexOf('html') >= 0) {
         data = await novelCtrl.chapter(ctx);
-        data.html_title=data.novel_name+' '+data.title;
+        data.html_title=data.novel_name+' '+data.title+'_柯基小说网';
         page = 'chapter';
     }
     if (data == '404') {
