@@ -21,6 +21,7 @@
     "pro": "export NODE_ENV=pro&&pm2 start app.js --name novel"
   },
   "dependencies": {
+    "koa-cors": "0.0.16",
     "koa-mysql-session": "0.0.2",
     "koa-session": "^5.8.1",
     "koa-session-minimal": "^3.0.4"

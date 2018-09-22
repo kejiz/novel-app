@@ -11,12 +11,14 @@ const koa = require('koa');
 const index = require('./middleware/index-page');    //--
 const router = require('./router/routes');
 const sessions = require('./middleware/session');
+var cors = require('koa-cors');
+
 const view = require('koa-ejs');       //--
 const serve = require("koa-static");    //--
 const favicon = require("koa-favicon"); //--
 const bodyParser = require('koa-bodyparser');
-
 const app = new koa();
+app.use(cors());
 app.use(sessions);
 app.use(async (ctx, next) => {
     if (ctx.querystring) {
